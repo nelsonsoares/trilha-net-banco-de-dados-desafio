@@ -66,59 +66,173 @@ Você deverá criar **12 consultas SQL** para retornar os dados conforme as espe
 ---
 
 ### 1. Buscar o nome e ano dos filmes
-![Exercicio 1](Imagens/1.png)
+<img src="Imagens/1.png" alt="Exercicio 1" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT nome as "Nome", ano as "Ano" 
+> FROM filmes;
+>
+> ```
 
 ---
 
 ### 2. Buscar o nome e ano dos filmes, ordenados por ordem crescente pelo ano
-![Exercicio 2](Imagens/2.png)
+<img src="Imagens/2.png" alt="Exercicio 2" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT nome as "Nome", ano as "Ano", duracao as "Duração" 
+> FROM filmes 
+> ORDER BY ano, duracao;
+>
+> ```
 
 ---
 
 ### 3. Buscar pelo filme "De Volta para o Futuro", trazendo nome, ano e a duração
-![Exercicio 3](Imagens/3.png)
+<img src="Imagens/3.png" alt="Exercicio 3" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT nome as "Nome", ano as "Ano", duracao as "Duração" 
+> FROM filmes 
+> WHERE nome='De Volta para o Futuro';
+> 
+> ```
 
 ---
 
 ### 4. Buscar os filmes lançados em 1997
-![Exercicio 4](Imagens/4.png)
+<img src="Imagens/4.png" alt="Exercicio 4" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT nome as "Nome", ano as "Ano", duracao as "Duração" 
+> FROM filmes 
+> WHERE ano=1997;
+>
+> ```
 
 ---
 
 ### 5. Buscar os filmes lançados APÓS o ano 2000
-![Exercicio 5](Imagens/5.png)
+<img src="Imagens/5.png" alt="Exercicio 5" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT nome as "Nome", ano as "Ano", duracao as "Duração" 
+> FROM filmes 
+> WHERE ano > 2000;
+>
+> ```
 
 ---
 
 ### 6. Buscar os filmes com a duração maior que 100 e menor que 150, ordenando pela duração em ordem crescente
-![Exercicio 6](Imagens/6.png)
+<img src="Imagens/6.png" alt="Exercicio 6" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT nome as "Nome", ano as "Ano", duracao as "Duração" 
+> FROM filmes
+> WHERE duracao > 100 AND duracao < 150
+> ORDER BY duracao;
+>
+> ```
 
 ---
 
 ### 7. Buscar a quantidade de filmes lançados no ano, agrupando por ano e ordenando pela quantidade/duração em ordem decrescente
-![Exercicio 7](Imagens/7.png)
+<img src="Imagens/7.png" alt="Exercicio 7" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT ano as "Ano", COUNT(ano) as "Quantidade" 
+> FROM filmes
+> GROUP BY ano
+> ORDER BY "Quantidade" DESC;
+> 
+> ```
 
 ---
 
 ### 8. Buscar os atores do gênero masculino, retornando PrimeiroNome e UltimoNome
-![Exercicio 8](Imagens/8.png)
+<img src="Imagens/8.png" alt="Exercicio 8" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT 
+>     primeironome as "Primeiro Nome", 
+>     ultimonome "Ultimo Nome", 
+>     genero as "Genero"
+> FROM atores
+> WHERE genero = 'M';
+> 
+> ```
 
 ---
 
 ### 9. Buscar os atores do gênero feminino, retornando PrimeiroNome, UltimoNome e ordenando pelo PrimeiroNome
-![Exercicio 9](Imagens/9.png)
+<img src="Imagens/9.png" alt="Exercicio 9" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT 
+>     primeironome as "Primeiro Nome", 
+>     ultimonome "Ultimo Nome", 
+>     genero as "Genero"
+> FROM atores
+> WHERE genero = 'F'
+> ORDER BY primeironome;
+> 
+> ```
 
 ---
 
 ### 10. Buscar o nome do filme e o gênero
-![Exercicio 10](Imagens/10.png)
+<img src="Imagens/10.png" alt="Exercicio 10" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT 
+>     Filmes.Nome as "Nome", 
+>     Generos.Genero as "Genero"
+> FROM Filmes
+> JOIN FilmesGenero ON Filmes.Id = FilmesGenero.IdFilme
+> JOIN Generos ON FilmesGenero.IdGenero = Generos.Id;
+> 
+> ```
 
 ---
 
 ### 11. Buscar o nome do filme e o gênero do tipo "Mistério"
-![Exercicio 11](Imagens/11.png)
+<img src="Imagens/11.png" alt="Exercicio 11" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT Filmes.Nome AS "Nome", Generos.Genero AS "Genero"
+> FROM Filmes
+> JOIN FilmesGenero ON Filmes.Id = FilmesGenero.IdFilme
+> JOIN Generos ON FilmesGenero.IdGenero = Generos.Id
+> WHERE Generos.Genero = 'Mistério';
+> 
+> ```
 
 ---
 
 ### 12. Buscar o nome do filme e os atores, trazendo PrimeiroNome, UltimoNome e seu Papel
-![Exercicio 12](Imagens/12.png)
+<img src="Imagens/12.png" alt="Exercicio 12" width="90%" />
+
+> **Resposta:**
+> ```sql
+> SELECT 
+>     Filmes.Nome AS "Nome", 
+>     Atores.PrimeiroNome AS "Primeiro Nome",
+>     Atores.UltimoNome AS "Ultimo Nome",
+>     ElencoFilme.Papel AS "Papel"
+> FROM Filmes
+> JOIN ElencoFilme ON Filmes.Id = ElencoFilme.IdFilme
+> JOIN Atores ON ElencoFilme.IdAtor = Atores.Id;
+> 
+> ```
