@@ -1,91 +1,124 @@
 # DIO - Trilha .NET - Banco de Dados
-www.dio.me
+> Desafio de Projeto | [DIO (Digital Innovation One)](https://www.dio.me)
 
-## Desafio de projeto
-Para este desafio, você precisará usar seus conhecimentos adquiridos no módulo de banco de dados, da trilha .NET da DIO.
+---
 
-## Contexto
-Você é responsável pelo banco de dados de um site de filmes, onde são armazenados dados sobre os filmes e seus atores. Sendo assim, foi solicitado para que você realize uma consulta no banco de dados com o objetivo de trazer alguns dados para análises.
+## 📌 Visão Geral do Desafio
 
-## Proposta
-Você precisará realizar 12 consultas ao banco de dados, cada uma retornando um tipo de informação.
-O seu banco de dados está modelado da seguinte maneira:
+Para este desafio, você precisará aplicar os conhecimentos adquiridos no módulo de **Banco de Dados** da trilha **.NET** da DIO.
 
-![Diagrama banco de dados](Imagens/diagrama.png)
+### 🎬 Contexto
+Você é responsável pelo banco de dados de um site de filmes, onde estão armazenadas informações completas sobre as obras e seus respectivos atores. Seu papel é construir consultas SQL para extrair relatórios e dados estruturados para análise.
 
-As tabelas sao descritas conforme a seguir:
+---
 
-**Filmes**
+## 🗄️ Modelagem do Banco de Dados
 
-Tabela responsável por armazenar informações dos filmes.
+O banco de dados é composto por 5 tabelas interligadas:
 
-**Atores**
+<p align="center">
+  <img src="Imagens/diagrama.png" alt="Diagrama Banco de Dados" width="700px" />
+</p>
 
-Tabela responsável por armazenar informações dos atores.
+### 📋 Descrição das Tabelas
 
-**Generos**
+| Tabela | Descrição |
+| :--- | :--- |
+| **`Filmes`** | Armazena informações dos filmes (nome, ano e duração). |
+| **`Atores`** | Armazena dados dos atores (primeiro nome, último nome e gênero). |
+| **`Generos`** | Armazena os gêneros cinematográficos disponíveis. |
+| **`ElencoFilme`** | Relacionamento *muitos-para-muitos* entre **Filmes** e **Atores**, especificando o papel/personagem. |
+| **`FilmesGenero`** | Relacionamento *muitos-para-muitos* entre **Filmes** e **Gêneros**. |
 
-Tabela responsável por armazenar os gêneros dos filmes.
+---
 
-**ElencoFilme**
+## ⚙️ Preparando o Banco de Dados (PostgreSQL / pgAdmin)
 
-Tabela responsável por representar um relacionamento do tipo muitos para muitos entre filmes e atores, ou seja, um ator pode trabalhar em muitos filmes, e filmes
-podem ter muitos atores.
+> [!IMPORTANT]
+> **Atenção — Migração de SQL Server para PostgreSQL:**  
+> O script original do desafio foi projetado para **SQL Server**, mas neste projeto ele foi **convertido e adaptado para PostgreSQL** no arquivo [`Script Filmes.sql`](Script%20Filmes.sql).
 
-**FilmesGenero**
+> [!WARNING]
+> **Execução no pgAdmin:**  
+> No **pgAdmin / PostgreSQL**, comandos para criar banco de dados (`CREATE DATABASE`) não podem ser executados dentro de transações comuns no painel de scripts. Portanto, siga o passo a passo abaixo:
+>
+> 1. **Crie o Banco Manualmente:**
+>    - Abra o **pgAdmin**.
+>    - Conecte ao seu servidor PostgreSQL.
+>    - Clique com o botão direito em **Databases** ➡️ **Create** ➡️ **Database...**.
+>    - Defina o nome como `Filmes` (ou de sua preferência) e clique em **Save**.
+>
+> 2. **Abra o Query Tool no Banco Criado:**
+>    - Selecione o banco de dados `Filmes` recém-criado na árvore lateral.
+>    - Abra o console de consultas clicando em **Tools** ➡️ **Query Tool** (ou botão direito no banco ➡️ **Query Tool**).
+>
+> 3. **Execute o Script de Criação e Carga:**
+>    - Carregue ou copie todo o conteúdo do arquivo [`Script Filmes.sql`](Script%20Filmes.sql).
+>    - Execute o script (**F5** ou botão de *Play*).  
+>    *As tabelas e todos os dados de teste serão criados com sucesso.*
 
-Tabela responsável por representar um relacionamento do tipo muitos para muitos entre filmes e gêneros, ou seja, um filme pode ter mais de um gênero, e um genêro pode fazer parte de muitos filmes.
+---
 
-## Preparando o banco de dados
-Você deverá executar o arquivo **Script Filmes.sql** em seu banco de dados SQL Server, presente na pasta Scripts deste repositório ([ou clique aqui](Script%20Filmes.sql)). Esse script irá criar um banco chamado **Filmes**, contendo as tabelas e os dados necessários para você realizar este desafio.
+## 🎯 Proposta e Consultas Solicitadas
 
-## Objetivo
-Você deverá criar diversas consultas, com o objetivo de retornar os dados a seguir. Abaixo de cada pedido tem o retorno esperado. O seu retorno deve ser igual ao da imagem.
+Você deverá criar **12 consultas SQL** para retornar os dados conforme as especificações e imagens de resultado esperado abaixo:
 
-## 1 - Buscar o nome e ano dos filmes
+---
 
+### 1. Buscar o nome e ano dos filmes
 ![Exercicio 1](Imagens/1.png)
 
-## 2 - Buscar o nome e ano dos filmes, ordenados por ordem crescente pelo ano
+---
 
+### 2. Buscar o nome e ano dos filmes, ordenados por ordem crescente pelo ano
 ![Exercicio 2](Imagens/2.png)
 
-## 3 - Buscar pelo filme de volta para o futuro, trazendo o nome, ano e a duração
+---
 
+### 3. Buscar pelo filme "De Volta para o Futuro", trazendo nome, ano e a duração
 ![Exercicio 3](Imagens/3.png)
 
-## 4 - Buscar os filmes lançados em 1997
+---
 
+### 4. Buscar os filmes lançados em 1997
 ![Exercicio 4](Imagens/4.png)
 
-## 5 - Buscar os filmes lançados APÓS o ano 2000
+---
 
+### 5. Buscar os filmes lançados APÓS o ano 2000
 ![Exercicio 5](Imagens/5.png)
 
-## 6 - Buscar os filmes com a duracao maior que 100 e menor que 150, ordenando pela duracao em ordem crescente
+---
 
+### 6. Buscar os filmes com a duração maior que 100 e menor que 150, ordenando pela duração em ordem crescente
 ![Exercicio 6](Imagens/6.png)
 
-## 7 - Buscar a quantidade de filmes lançadas no ano, agrupando por ano, ordenando pela duracao em ordem decrescente
+---
 
+### 7. Buscar a quantidade de filmes lançados no ano, agrupando por ano e ordenando pela quantidade/duração em ordem decrescente
 ![Exercicio 7](Imagens/7.png)
 
-## 8 - Buscar os Atores do gênero masculino, retornando o PrimeiroNome, UltimoNome
+---
 
+### 8. Buscar os atores do gênero masculino, retornando PrimeiroNome e UltimoNome
 ![Exercicio 8](Imagens/8.png)
 
-## 9 - Buscar os Atores do gênero feminino, retornando o PrimeiroNome, UltimoNome, e ordenando pelo PrimeiroNome
+---
 
+### 9. Buscar os atores do gênero feminino, retornando PrimeiroNome, UltimoNome e ordenando pelo PrimeiroNome
 ![Exercicio 9](Imagens/9.png)
 
-## 10 - Buscar o nome do filme e o gênero
+---
 
+### 10. Buscar o nome do filme e o gênero
 ![Exercicio 10](Imagens/10.png)
 
-## 11 - Buscar o nome do filme e o gênero do tipo "Mistério"
+---
 
+### 11. Buscar o nome do filme e o gênero do tipo "Mistério"
 ![Exercicio 11](Imagens/11.png)
 
-## 12 - Buscar o nome do filme e os atores, trazendo o PrimeiroNome, UltimoNome e seu Papel
+---
 
+### 12. Buscar o nome do filme e os atores, trazendo PrimeiroNome, UltimoNome e seu Papel
 ![Exercicio 12](Imagens/12.png)
